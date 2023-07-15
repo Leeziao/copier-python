@@ -1,0 +1,30 @@
+from setuptools import setup, find_packages
+
+
+def readme():
+    with open("README.rst") as f:
+        return f.read()
+
+from {{project_name}}.version import {{project_name}}_version
+
+setup(
+    name="{{project_name}}",
+    version={{project_name}}_version,
+    packages=find_packages(),
+
+    description="{{project_description}}",
+    long_description=readme(),
+
+    author="leeziao",
+    author_email="leeziao0331@gmail.com",
+
+    license="MIT",
+    include_package_data=True,
+
+    {% if use_cli %}
+    entry_points={
+        "console_scripts": ["{{ cli_name }}={{ project_name }}.cli:main"],
+    },
+    {% endif %}
+)
+
